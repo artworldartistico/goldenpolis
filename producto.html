@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Producto — GoldenPolis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- ============================================ -->
+    <!-- FAVICON - MÚLTIPLES TAMAÑOS -->
+    <!-- ============================================ -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon.png">
+  <style>
+    .breadcrumb { padding: 1rem 0 .5rem; font-size: .75rem; color: var(--sand); letter-spacing: .04em; display: flex; gap: .5rem; align-items: center; }
+    .breadcrumb a { color: var(--sand); transition: color .3s; }
+    .breadcrumb a:hover { color: var(--terra); }
+    .breadcrumb i { font-size: .6rem; opacity: .5; }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container header-grid">
+    <a href="index.html" class="logo">
+      <img src="assets/img/golden-polis-logo.png" alt="GoldenPolis" class="logo-img">
+    </a>
+    <nav class="nav">
+      <a href="index.html">Inicio</a>
+      <a href="soporte.html">Soporte</a>
+      <button id="cartBtn"><i class="fa-solid fa-bag-shopping"></i><span id="cartCount">0</span></button>
+    </nav>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú">
+      <i class="fa-solid fa-bars icon-bars"></i>
+      <i class="fa-solid fa-x icon-x"></i>
+    </button>
+  </div>
+  <aside class="cart" id="cartSidebar">
+    <button class="cart-close" id="closeCart"><i class="fa-solid fa-xmark"></i></button>
+    <h2>Mi carrito</h2>
+    <div id="cartItems"></div>
+    <div class="cart-coupon">
+      <input type="text" id="couponInput" placeholder="Código de cupón">
+      <button id="applyCoupon">Aplicar</button>
+    </div>
+    <p><strong>Total:</strong> <span id="cartTotal">$0</span></p>
+    <button id="checkoutBtn" class="checkout-btn">Finalizar compra</button>
+  </aside>
+</header>
+
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-mobile" id="navMobile">
+  <div class="nav-mobile-inner">
+    <a href="index.html"><i class="fa-solid fa-house"></i>Inicio</a>
+    <a href="soporte.html"><i class="fa-solid fa-headset"></i>Soporte</a>
+    <div class="nav-mobile-divider"></div>
+    <a href="#" class="nav-mobile-cart" id="cartBtnMobile">
+      <i class="fa-solid fa-bag-shopping"></i>Mi carrito
+      <span id="cartCountMobile" style="background:var(--terra);color:#fff;border-radius:100px;padding:.1rem .5rem;font-size:.75rem;margin-left:.2rem;">0</span>
+    </a>
+  </div>
+</nav>
+
+<div class="product-navigation container">
+  <a id="prevProduct" class="nav-product prev hidden"></a>
+  <a id="nextProduct" class="nav-product next hidden"></a>
+</div>
+
+<div class="container">
+  <nav class="breadcrumb">
+    <a href="index.html">Inicio</a>
+    <i class="fa-solid fa-chevron-right"></i>
+    <span>Producto</span>
+  </nav>
+</div>
+
+<main class="container product-detail" id="productDetail"></main>
+
+<section class="comments container">
+  <h3>Comentarios</h3>
+  <textarea id="commentText" placeholder="¿Qué opinas de este producto?"></textarea>
+  <button id="addComment"><i class="fa-regular fa-paper-plane"></i> Publicar comentario</button>
+  <div id="commentList"></div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <p>© <span id="currentYear"></span> GoldenPolis — Todos los derechos reservados</p>
+</footer>
+<script>document.getElementById("currentYear").textContent = new Date().getFullYear();</script>
+
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/ui.js"></script>
+<script>
+(function(){
+  var h=document.getElementById('navHamburger'),m=document.getElementById('navMobile'),o=document.getElementById('navOverlay');
+  function open(){h.classList.add('is-open');m.classList.add('is-open');o.classList.add('is-open');document.body.style.overflow='hidden';h.setAttribute('aria-label','Cerrar menú');}
+  function close(){h.classList.remove('is-open');m.classList.remove('is-open');o.classList.remove('is-open');document.body.style.overflow='';h.setAttribute('aria-label','Abrir menú');}
+  h.addEventListener('click',function(){h.classList.contains('is-open')?close():open();});
+  o.addEventListener('click',close);
+  m.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){if(l.id!=='cartBtnMobile')close();});});
+  var cb=document.getElementById('cartBtnMobile');
+  if(cb){cb.addEventListener('click',function(e){e.preventDefault();close();setTimeout(function(){var s=document.getElementById('cartSidebar');if(s)s.classList.add('active');},350);});}
+  var cd=document.getElementById('cartCount'),cm=document.getElementById('cartCountMobile');
+  if(cd&&cm){new MutationObserver(function(){cm.textContent=cd.textContent;}).observe(cd,{childList:true,characterData:true,subtree:true});cm.textContent=cd.textContent;}
+  window.addEventListener('scroll',function(){document.querySelector('.header').classList.toggle('scrolled',window.scrollY>10);},{passive:true});
+})();
+</script>
+
+</body>
+</html>

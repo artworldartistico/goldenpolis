@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>GoldenPolis — Moda Premium</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Descubre piezas únicas y colecciones exclusivas en GoldenPolis.">
+
+  <!-- ============================================ -->
+    <!-- FAVICON - MÚLTIPLES TAMAÑOS -->
+    <!-- ============================================ -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon.png">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <style>
+    /* ============================================
+       HERO — SECCIÓN BIENVENIDA
+       Diseño editorial con imagen de fondo y texto
+    ============================================ */
+    .hero {
+      position: relative;
+      height: clamp(420px, 60vh, 680px);
+      background: var(--carbon);
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    /* Overlay gradiente */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(160deg, rgba(28,28,30,.3) 0%, rgba(28,28,30,.85) 100%),
+        radial-gradient(ellipse 70% 80% at 80% 30%, rgba(181,113,74,.2) 0%, transparent 60%);
+      z-index: 1;
+    }
+
+    /* Imagen de fondo */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      opacity: .55;
+      transition: transform 8s ease;
+    }
+
+    .hero:hover .hero-bg {
+      transform: scale(1.04);
+    }
+
+    /* Contenido */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 3.5rem 0;
+      animation: fadeUp .8s ease .2s both;
+    }
+
+    .hero-eyebrow {
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,.55);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      color: var(--white);
+      line-height: 1.1;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      max-width: 580px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--terra-light);
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      background: var(--terra);
+      color: var(--white);
+      padding: .9rem 2rem;
+      border-radius: 2px;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .hero-cta:hover {
+      background: var(--terra-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(181,113,74,.4);
+    }
+
+    .hero-cta i {
+      font-size: .75rem;
+      transition: transform .3s;
+    }
+
+    .hero-cta:hover i {
+      transform: translateX(4px);
+    }
+
+    /* ============================================
+       BARRA DE FEATURES
+    ============================================ */
+    .features-bar {
+      background: var(--white);
+      border-bottom: 1px solid rgba(158,142,122,.12);
+      padding: 1.2rem 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      padding: .3rem .5rem;
+    }
+
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--terra);
+      font-size: .85rem;
+      flex-shrink: 0;
+    }
+
+    .feature-text strong {
+      display: block;
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--carbon);
+      letter-spacing: .02em;
+    }
+
+    .feature-text span {
+      font-size: .72rem;
+      color: var(--sand);
+    }
+
+    @media (max-width: 768px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .features-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: .5rem;
+      }
+
+      .feature-item {
+        gap: .5rem;
+      }
+    }
+
+    /* ============================================
+       SECCIÓN CATEGORÍAS DESTACADAS
+    ============================================ */
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .section-label {
+      font-size: .68rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--terra);
+      font-weight: 600;
+      display: block;
+      margin-bottom: .3rem;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      color: var(--carbon);
+      font-weight: 700;
+    }
+
+    .section-link {
+      font-size: .8rem;
+      color: var(--sand);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color .3s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .section-link:hover {
+      color: var(--terra);
+    }
+
+    /* ============================================
+       COLECCIONES — GRID DESTACADO
+    ============================================ */
+    .collections-section {
+      padding: 4rem 0;
+    }
+
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      gap: 1.2rem;
+    }
+
+    .collection-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--cream-dark);
+      cursor: pointer;
+      aspect-ratio: 3/4;
+      display: block;
+      text-decoration: none;
+    }
+
+    .collection-card:first-child {
+      grid-row: 1 / 3;
+      aspect-ratio: auto;
+    }
+
+    .collection-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .7s ease;
+    }
+
+    .collection-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .collection-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,28,30,.75) 0%, transparent 60%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.8rem 1.4rem;
+    }
+
+    .collection-label {
+      font-size: .65rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,.6);
+      font-weight: 500;
+      margin-bottom: .25rem;
+    }
+
+    .collection-name {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: var(--white);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    @media (max-width: 768px) {
+      .collections-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .collection-card:first-child {
+        grid-column: 1 / 3;
+        grid-row: auto;
+        aspect-ratio: 16/9;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .collections-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .collection-card:first-child {
+        grid-column: auto;
+        aspect-ratio: 4/3;
+      }
+    }
+
+    /* ============================================
+       SECCIÓN CATÁLOGO
+    ============================================ */
+    .catalog-section {
+      padding: 2rem 0 5rem;
+    }
+
+    /* ============================================
+       BANNER MÉTODOS DE PAGO (pre-checkout)
+    ============================================ */
+    .payment-banner {
+      background: linear-gradient(135deg, var(--cream) 0%, #EDE3D2 100%);
+      border: 1px solid rgba(181,113,74,.2);
+      border-radius: var(--radius-xl);
+      padding: 2rem 2.5rem;
+      margin: 3rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .payment-banner-text h4 {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--carbon);
+      margin-bottom: .3rem;
+    }
+
+    .payment-banner-text p {
+      font-size: .85rem;
+      color: var(--sand);
+    }
+
+    .payment-methods-list {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .payment-pill {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .5rem 1.1rem;
+      background: var(--white);
+      border-radius: 100px;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--carbon);
+      border: 1px solid rgba(158,142,122,.2);
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+
+    .payment-pill .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .pill-nequi   { background: #6C1C5C; }
+    .pill-daviplata { background: #ED1C24; }
+  </style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="container header-grid">
+
+    <!-- LOGO — texto. Para usar PNG descomenta la línea img y comenta el texto -->
+    <a href="index.html" class="logo">
+      <img src="assets/img/golden-polis-logo.png" alt="GoldenPolis" class="logo-img">
+    </a>
+
+    <!-- NAV DESKTOP -->
+    <nav class="nav">
+      <a href="index.html">Inicio</a>
+      <a href="soporte.html">Soporte</a>
+      <button id="cartBtn">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span id="cartCount">0</span>
+      </button>
+    </nav>
+
+    <!-- BOTÓN HAMBURGUESA (solo móvil) -->
+    <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú">
+      <i class="fa-solid fa-bars icon-bars"></i>
+      <i class="fa-solid fa-x icon-x"></i>
+    </button>
+
+  </div>
+</header>
+
+<!-- OVERLAY oscuro (clic para cerrar) -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- PANEL MENÚ MÓVIL — baja desde arriba -->
+<nav class="nav-mobile" id="navMobile">
+  <div class="nav-mobile-inner">
+    <a href="index.html">
+      <i class="fa-solid fa-house"></i>
+      Inicio
+    </a>
+    <a href="soporte.html">
+      <i class="fa-solid fa-headset"></i>
+      Soporte
+    </a>
+    <div class="nav-mobile-divider"></div>
+    <a href="#" class="nav-mobile-cart" id="cartBtnMobile">
+      <i class="fa-solid fa-bag-shopping"></i>
+      Mi carrito
+      <span id="cartCountMobile" style="background:var(--terra);color:#fff;border-radius:100px;padding:.1rem .5rem;font-size:.75rem;margin-left:.2rem;">0</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <!-- 
+    Coloca aquí la URL de tu imagen hero.
+    Si no tienes una, el degradado de fondo del carbon se verá igualmente bien.
+  -->
+  <!-- <img class="hero-bg" src="assets/img/hero-banner.jpg" alt="Colección principal"> -->
+
+  <div class="container hero-content">
+    <p class="hero-eyebrow">Nueva temporada · 2025</p>
+    <h1 class="hero-title">
+      Piezas que <em>definen</em><br>tu estilo propio
+    </h1>
+    <a href="#catalogo" class="hero-cta">
+      Explorar colección
+      <i class="fa-solid fa-arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+<!-- ================= SLIDER (original, funcional) ================= -->
+<!-- 
+  El slider original JS necesita estos elementos con .slide y .active.
+  Lo movemos debajo del hero o lo mantenemos como ticker.
+-->
+<section class="slider" id="slider" style="height:56px; background: var(--carbon);">
+  <div class="slide active" style="font-family:var(--font-sans); font-size:.78rem; letter-spacing:.15em; text-transform:uppercase; font-weight:500;">
+    Envíos nacionales disponibles
+  </div>
+  <div class="slide" style="font-family:var(--font-sans); font-size:.78rem; letter-spacing:.15em; text-transform:uppercase; font-weight:500;">
+    Pagos seguros · Nequi &amp; Daviplata
+  </div>
+  <div class="slide" style="font-family:var(--font-sans); font-size:.78rem; letter-spacing:.15em; text-transform:uppercase; font-weight:500;">
+    Temporada de ofertas especiales
+  </div>
+</section>
+
+<!-- ================= FEATURES ================= -->
+<section class="features-bar">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fa-solid fa-truck-fast"></i>
+        </div>
+        <div class="feature-text">
+          <strong>Envío nacional</strong>
+          <span>Todo el país</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <div class="feature-text">
+          <strong>Pago seguro</strong>
+          <span>Nequi & Daviplata</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fa-solid fa-rotate-left"></i>
+        </div>
+        <div class="feature-text">
+          <strong>Cambios</strong>
+          <span>Política flexible</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fa-regular fa-star"></i>
+        </div>
+        <div class="feature-text">
+          <strong>Calidad premium</strong>
+          <span>Marcas seleccionadas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BANNER MÉTODOS DE PAGO ================= -->
+<div class="container">
+  <div class="payment-banner">
+    <div class="payment-banner-text">
+      <h4>Métodos de pago disponibles</h4>
+      <p>Realizamos todos nuestros pagos de forma rápida y segura.</p>
+    </div>
+    <div class="payment-methods-list">
+      <div class="payment-pill">
+        <span class="pill-dot pill-nequi"></span>
+        Nequi
+      </div>
+      <div class="payment-pill">
+        <span class="pill-dot pill-daviplata"></span>
+        Daviplata
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FILTROS ================= -->
+<section class="filters container" id="catalogo">
+  <div class="search-wrapper">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Buscar productos, tallas, colores..."
+    >
+    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+  </div>
+
+  <select id="categoryFilter">
+    <option value="">Todas las categorías</option>
+  </select>
+
+  <select id="priceFilter">
+    <option value="">Precio</option>
+    <option value="low">Menor a mayor</option>
+    <option value="high">Mayor a menor</option>
+  </select>
+
+  <label>
+    <input type="checkbox" id="stockFilter">
+    Solo disponibles
+  </label>
+</section>
+
+<!-- ================= CATÁLOGO ================= -->
+<section class="catalog-section container">
+  <div class="section-header">
+    <div>
+      <span class="section-label">Catálogo</span>
+      <h2 class="section-title">Nuestra colección</h2>
+    </div>
+  </div>
+
+  <main class="products" id="productList">
+    <!-- Productos renderizados por store.js -->
+  </main>
+</section>
+
+<!-- ================= CARRITO SIDEBAR ================= -->
+<aside class="cart" id="cartSidebar">
+  <button class="cart-close" id="closeCart">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
+  <h2>Mi carrito</h2>
+
+  <div id="cartItems"></div>
+
+  <div class="cart-coupon">
+    <input type="text" id="couponInput" placeholder="Código de cupón">
+    <button id="applyCoupon">Aplicar</button>
+  </div>
+
+  <p>Total: <strong id="cartTotal">$0</strong></p>
+
+  <button id="checkoutBtn" class="checkout-btn">
+    Finalizar compra
+  </button>
+</aside>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <p>© <span id="currentYear"></span> GoldenPolis — Todos los derechos reservados</p>
+</footer>
+<script>document.getElementById("currentYear").textContent = new Date().getFullYear();</script>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="assets/js/data.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/ui.js"></script>
+
+<script>
+/* =============================================
+   MENÚ HAMBURGUESA MÓVIL
+   Toggle panel + icono bars ↔ x + overlay
+============================================= */
+(function() {
+  const hamburger = document.getElementById('navHamburger');
+  const mobileNav = document.getElementById('navMobile');
+  const overlay   = document.getElementById('navOverlay');
+
+  function openMenu() {
+    hamburger.classList.add('is-open');
+    mobileNav.classList.add('is-open');
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    hamburger.setAttribute('aria-label', 'Cerrar menú');
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('is-open');
+    mobileNav.classList.remove('is-open');
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+    hamburger.setAttribute('aria-label', 'Abrir menú');
+  }
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.contains('is-open') ? closeMenu() : openMenu();
+  });
+
+  overlay.addEventListener('click', closeMenu);
+
+  /* Cerrar al hacer clic en cualquier link del menú móvil */
+  mobileNav.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      if (!link.id || (link.id !== 'cartBtnMobile')) closeMenu();
+    });
+  });
+
+  /* Botón carrito móvil — abre el sidebar del carrito */
+  const cartBtnMobile = document.getElementById('cartBtnMobile');
+  if (cartBtnMobile) {
+    cartBtnMobile.addEventListener('click', function(e) {
+      e.preventDefault();
+      closeMenu();
+      setTimeout(function() {
+        const sidebar = document.getElementById('cartSidebar');
+        if (sidebar) sidebar.classList.add('active');
+      }, 350);
+    });
+  }
+
+  /* Sincronizar el contador del carrito móvil con el desktop */
+  const cartCountDesktop = document.getElementById('cartCount');
+  const cartCountMobile  = document.getElementById('cartCountMobile');
+  if (cartCountDesktop && cartCountMobile) {
+    const observer = new MutationObserver(function() {
+      cartCountMobile.textContent = cartCountDesktop.textContent;
+    });
+    observer.observe(cartCountDesktop, { childList: true, characterData: true, subtree: true });
+    cartCountMobile.textContent = cartCountDesktop.textContent;
+  }
+
+  /* Header shadow al hacer scroll */
+  window.addEventListener('scroll', function() {
+    document.querySelector('.header').classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>
