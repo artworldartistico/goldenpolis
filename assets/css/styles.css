@@ -592,34 +592,94 @@ input, select, textarea {
   color: var(--sand);
 }
 
-/* Checkbox estilizado */
+/* ==================================================
+   CHECKBOX "SOLO DISPONIBLES"
+================================================== */
 .filters label {
   display: flex;
   align-items: center;
-  gap: .6rem;
+  gap: .7rem;
   font-size: .88rem;
   color: var(--sand);
   cursor: pointer;
   user-select: none;
   padding: .75rem 1rem;
-  border: 1.5px solid transparent;
+  border: 1.5px solid rgba(158,142,122,.2);
   border-radius: var(--radius-lg);
-  transition: var(--transition);
+  transition: border-color .25s ease, background .25s ease, color .25s ease;
+  position: relative;
 }
 
 .filters label:hover {
-  border-color: rgba(181,113,74,.25);
+  border-color: rgba(181,113,74,.3);
   background: var(--cream);
+  color: var(--carbon);
 }
 
+/* Ocultar el checkbox nativo visualmente pero mantenerlo funcional */
 .filters label input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--terra);
-  padding: 0;
-  border: none;
-  background: none;
+  appearance: none;
+  -webkit-appearance: none;
+  position: absolute;
+  opacity: 0;
+  width: 18px;
+  height: 18px;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  cursor: pointer;
+  z-index: 1;
 }
+
+/* Caja del checkbox — ::before del label */
+.filters label::before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  border: 2px solid rgba(158,142,122,.4);
+  border-radius: 50%;
+  background: var(--white);
+  transition: border-color .25s ease, background .25s ease;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* Checkmark — ::after del label, oculto por defecto */
+.filters label::after {
+  content: '';
+  position: absolute;
+  left: calc(1rem + 5px);
+  top: 50%;
+  transform: translateY(-65%) rotate(45deg);
+  width: 5px;
+  height: 9px;
+  border: 2.5px solid #20ba5a;
+  border-top: none;
+  border-left: none;
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+
+/* Estado marcado */
+.filters label:has(input[type="checkbox"]:checked) {
+  border-color: #20ba5a;
+  background: #f0fdf4;
+  color: var(--carbon);
+  font-weight: 600;
+}
+
+.filters label:has(input[type="checkbox"]:checked)::before {
+  border-color: #20ba5a;
+  background: #f0fdf4;
+}
+
+.filters label:has(input[type="checkbox"]:checked)::after {
+  opacity: 1;
+}
+
 
 /* Buscador con ícono */
 .search-wrapper {
@@ -1330,17 +1390,28 @@ input, select, textarea {
   letter-spacing: .02em;
 }
 
-.variation-option:hover:not(:disabled) {
+.variation-option:hover:not(:disabled):not(.active) {
   border-color: var(--terra);
   background: var(--cream);
+  color: var(--carbon);
   transform: translateY(-1px);
 }
 
+/* Seleccionado — negro carbón */
 .variation-option.active {
   background: var(--carbon);
   color: var(--white);
   border-color: var(--carbon);
   box-shadow: 0 2px 8px rgba(28,28,30,.2);
+}
+
+/* Hover sobre seleccionado — carbón con leve opacidad, texto siempre blanco */
+.variation-option.active:hover {
+  background: var(--carbon);
+  color: var(--white);
+  border-color: var(--carbon);
+  opacity: .85;
+  transform: none;
 }
 
 .variation-option:disabled,
@@ -1351,6 +1422,12 @@ input, select, textarea {
   cursor: not-allowed;
   text-decoration: line-through;
   opacity: .6;
+}
+
+.variation-option:disabled:hover,
+.variation-option.out-of-stock:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 /* ==================================================
