@@ -70,7 +70,7 @@ function renderProducts(list) {
         <img 
           src="${product.images[0].startsWith('http') 
             ? product.images[0] 
-            : '/assets/img/' + product.images[0]}"
+            : 'assets/img/' + product.images[0]}"
           alt="${product.name}">      
         </a>
   
@@ -504,12 +504,12 @@ function getProductImage(id, variation = null) {
   // 🔹 Si hay variación y tiene imagen, usar esa
   if (variation && variation.image) {
     const img = variation.image;
-    return img.startsWith("http") ? img : "/assets/img/" + img;
+    return img.startsWith("http") ? img : "assets/img/" + img;
   }
 
   // 🔹 Si no, usar la imagen por defecto del producto
   const img = product.images[0];
-  return img.startsWith("http") ? img : "/assets/img/" + img;
+  return img.startsWith("http") ? img : "assets/img/" + img;
 }
 
 /* =========================
