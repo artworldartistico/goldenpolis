@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Soporte — GoldenPolis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ============================================ -->
+    <!-- FAVICON - MÚLTIPLES TAMAÑOS -->
+    <!-- ============================================ -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon.png">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <style>
+    /* HERO SOPORTE */
+    .support-hero {
+      background: var(--carbon);
+      padding: 4rem 0 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .support-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 50% 0%, rgba(181,113,74,.18) 0%, transparent 70%);
+    }
+
+    .support-hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .support-hero .section-label {
+      color: rgba(181,113,74,.85);
+    }
+
+    .support-hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: .8rem;
+    }
+
+    .support-hero p {
+      font-size: .9rem;
+      color: rgba(245,240,232,.55);
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    /* SOPORTE LAYOUT */
+    .support-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 2.5rem;
+      padding: 3.5rem 0 5rem;
+      align-items: start;
+    }
+
+    /* FORM SOPORTE REDISEÑADO */
+    .support-form-wrap {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(158,142,122,.12);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      animation: fadeUp .5s ease both;
+    }
+
+    .support-form-wrap h2 {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--carbon);
+      margin-bottom: 1.5rem;
+      padding-bottom: .8rem;
+      border-bottom: 1px solid rgba(158,142,122,.12);
+    }
+
+    /* Etiquetas de campos */
+    .field-label {
+      display: block;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--carbon);
+      margin-bottom: .5rem;
+    }
+
+    .field-wrap {
+      margin-bottom: 1.4rem;
+    }
+
+    .support-form-wrap select,
+    .support-form-wrap textarea,
+    .support-form-wrap input {
+      width: 100%;
+      padding: .85rem 1rem;
+      border: 1.5px solid rgba(158,142,122,.25);
+      border-radius: var(--radius-lg);
+      background: var(--off-white);
+      color: var(--carbon);
+      font-size: .9rem;
+      transition: var(--transition);
+      margin-bottom: 0;
+    }
+
+    .support-form-wrap select:focus,
+    .support-form-wrap textarea:focus,
+    .support-form-wrap input:focus {
+      border-color: var(--terra);
+      outline: none;
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(181,113,74,.1);
+    }
+
+    .support-form-wrap textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .support-form-wrap button[type="submit"] {
+      width: 100%;
+      background: var(--carbon);
+      color: var(--white);
+      padding: 1rem;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+    }
+
+    .support-form-wrap button[type="submit"]:hover {
+      background: var(--terra);
+      box-shadow: 0 6px 20px rgba(181,113,74,.35);
+      transform: translateY(-1px);
+    }
+
+    /* SIDEBAR INFO */
+    .support-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      position: sticky;
+      top: 90px;
+    }
+
+    .info-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(158,142,122,.12);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .info-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--terra);
+      font-size: .95rem;
+      margin-bottom: 1rem;
+    }
+
+    .info-card h4 {
+      font-weight: 700;
+      color: var(--carbon);
+      font-size: .9rem;
+      margin-bottom: .4rem;
+    }
+
+    .info-card p {
+      font-size: .82rem;
+      color: var(--sand);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .support-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .support-sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .support-sidebar {
+        grid-template-columns: 1fr;
+      }
+
+      .support-form-wrap {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="container header-grid">
+
+    <a href="index.html" class="logo">
+      <img src="assets/img/golden-polis-logo.png" alt="GoldenPolis" class="logo-img">
+    </a>
+
+    <nav class="nav">
+      <a href="index.html">Inicio</a>
+      <a href="soporte.html">Soporte</a>
+    </nav>
+
+    <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú">
+      <i class="fa-solid fa-bars icon-bars"></i>
+      <i class="fa-solid fa-x icon-x"></i>
+    </button>
+
+  </div>
+</header>
+
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-mobile" id="navMobile">
+  <div class="nav-mobile-inner">
+    <a href="index.html"><i class="fa-solid fa-house"></i>Inicio</a>
+    <a href="soporte.html"><i class="fa-solid fa-headset"></i>Soporte</a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="support-hero">
+  <div class="container support-hero-content">
+    <span class="section-label">Centro de ayuda</span>
+    <h1>¿En qué podemos ayudarte?</h1>
+    <p>Cuéntanos tu caso y te responderemos a la brevedad posible.</p>
+  </div>
+</section>
+
+<!-- ================= LAYOUT ================= -->
+<div class="container support-layout">
+
+  <!-- FORMULARIO -->
+  <div class="support-form-wrap">
+    <h2>Enviar consulta</h2>
+
+    <form id="supportForm">
+      <div class="field-wrap">
+        <label class="field-label" for="productSelect">Producto relacionado</label>
+        <select id="productSelect">
+          <option value="">Selecciona un producto...</option>
+        </select>
+      </div>
+
+      <div class="field-wrap">
+        <label class="field-label" for="supportMessage">Tu mensaje</label>
+        <textarea
+          id="supportMessage"
+          placeholder="Describe tu consulta con el mayor detalle posible..."
+        ></textarea>
+      </div>
+
+      <button type="submit">
+        <i class="fa-regular fa-paper-plane"></i>
+        Enviar consulta
+      </button>
+    </form>
+  </div>
+
+  <!-- SIDEBAR INFO -->
+  <aside class="support-sidebar">
+    <div class="info-card">
+      <div class="info-card-icon">
+        <i class="fa-solid fa-clock"></i>
+      </div>
+      <h4>Tiempo de respuesta</h4>
+      <p>Respondemos en un plazo máximo de 24 horas hábiles.</p>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-icon">
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+      <h4>WhatsApp directo</h4>
+      <p>Para consultas urgentes, escríbenos directamente por WhatsApp.</p>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-icon">
+        <i class="fa-solid fa-rotate-left"></i>
+      </div>
+      <h4>Cambios y devoluciones</h4>
+      <p>Gestionamos cambios en los primeros 15 días después de recibir tu pedido.</p>
+    </div>
+  </aside>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <p>© <span id="currentYear"></span> GoldenPolis — Todos los derechos reservados</p>
+</footer>
+<script>document.getElementById("currentYear").textContent = new Date().getFullYear();</script>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="assets/js/data.js"></script>
+<script src="assets/js/ui.js"></script>
+
+<script>
+(function(){
+  var h=document.getElementById('navHamburger'),m=document.getElementById('navMobile'),o=document.getElementById('navOverlay');
+  if(!h)return;
+  function open(){h.classList.add('is-open');m.classList.add('is-open');o.classList.add('is-open');document.body.style.overflow='hidden';}
+  function close(){h.classList.remove('is-open');m.classList.remove('is-open');o.classList.remove('is-open');document.body.style.overflow='';}
+  h.addEventListener('click',function(){h.classList.contains('is-open')?close():open();});
+  o.addEventListener('click',close);
+  m.querySelectorAll('a').forEach(function(l){l.addEventListener('click',close);});
+  window.addEventListener('scroll',function(){document.querySelector('.header').classList.toggle('scrolled',window.scrollY>10);},{passive:true});
+})();
+</script>
+
+</body>
+</html>

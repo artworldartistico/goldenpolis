@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Finalizar Compra — GoldenPolis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ============================================ -->
+    <!-- FAVICON - MÚLTIPLES TAMAÑOS -->
+    <!-- ============================================ -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon.png">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/checkout-styles.css">
+
+  <style>
+    /* ============================================
+       BANNER MÉTODOS DE PAGO — BLOQUE INFORMATIVO
+       Requerido antes del formulario de checkout
+    ============================================ */
+    .checkout-payment-notice {
+      background: linear-gradient(135deg, var(--cream) 0%, #EDE3D2 100%);
+      border: 1px solid rgba(181,113,74,.2);
+      border-radius: var(--radius-xl);
+      padding: 1.4rem 1.8rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+      animation: fadeUp .5s ease both;
+    }
+
+    .checkout-payment-notice-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--terra);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .checkout-payment-notice-text {
+      flex: 1;
+    }
+
+    .checkout-payment-notice-text h4 {
+      font-weight: 700;
+      color: var(--carbon);
+      font-size: .9rem;
+      margin-bottom: .2rem;
+    }
+
+    .checkout-payment-notice-text p {
+      font-size: .82rem;
+      color: var(--sand);
+    }
+
+    .checkout-payment-pills {
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+    }
+
+    .checkout-pill {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .4rem 1rem;
+      background: var(--white);
+      border-radius: 100px;
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--carbon);
+      border: 1px solid rgba(158,142,122,.2);
+    }
+
+    .checkout-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-nequi    { background: #6C1C5C; }
+    .dot-daviplata { background: #ED1C24; }
+
+    @media (max-width: 640px) {
+      .checkout-payment-notice {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="container header-grid">
+
+    <a href="index.html" class="logo">
+      <img src="assets/img/golden-polis-logo.png" alt="GoldenPolis" class="logo-img">
+    </a>
+
+    <nav class="nav">
+      <a href="index.html">
+        <i class="fa-solid fa-arrow-left" style="font-size:.75rem;"></i>
+        Volver a la tienda
+      </a>
+    </nav>
+
+    <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú">
+      <i class="fa-solid fa-bars icon-bars"></i>
+      <i class="fa-solid fa-x icon-x"></i>
+    </button>
+
+  </div>
+</header>
+
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-mobile" id="navMobile">
+  <div class="nav-mobile-inner">
+    <a href="index.html">
+      <i class="fa-solid fa-arrow-left"></i>
+      Volver a la tienda
+    </a>
+  </div>
+</nav>
+
+<!-- ================= BANNER MÉTODOS DE PAGO ================= -->
+<div class="container" style="margin-top: 2rem;">
+  <div class="checkout-payment-notice">
+    <div class="checkout-payment-notice-icon">
+      <i class="fa-solid fa-shield-halved"></i>
+    </div>
+    <div class="checkout-payment-notice-text">
+      <h4>Métodos de pago disponibles</h4>
+      <p>Realizamos todos los pagos mediante transferencia digital. Selecciona tu método en el formulario.</p>
+    </div>
+    <div class="checkout-payment-pills">
+      <div class="checkout-pill">
+        <span class="checkout-pill-dot dot-nequi"></span>
+        Nequi
+      </div>
+      <div class="checkout-pill">
+        <span class="checkout-pill-dot dot-daviplata"></span>
+        Daviplata
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CHECKOUT CONTAINER ================= -->
+<main class="checkout-container container">
+
+  <!-- FORMULARIO -->
+  <div class="checkout-form">
+    <h2>
+      <i class="fa-solid fa-bag-shopping"></i>
+      Finalizar compra
+    </h2>
+
+    <form id="checkoutForm">
+
+      <!-- DATOS DEL CLIENTE -->
+      <section class="form-section">
+        <h3>
+          <i class="fa-solid fa-user"></i>
+          Datos de contacto
+        </h3>
+
+        <div class="form-group">
+          <label>Nombre completo *</label>
+          <input
+            type="text"
+            id="customerName"
+            placeholder="Tu nombre completo"
+            required
+            autocomplete="name">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Teléfono *</label>
+            <input
+              type="tel"
+              id="customerPhone"
+              placeholder="Número de teléfono"
+              required
+              autocomplete="tel">
+          </div>
+
+          <div class="form-group">
+            <label>Correo electrónico *</label>
+            <input
+              type="email"
+              id="customerEmail"
+              placeholder="tu@correo.com"
+              required
+              autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>País *</label>
+            <select id="country" required>
+              <option value="">Selecciona un país</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Ciudad *</label>
+            <select id="city" required>
+              <option value="">Selecciona una ciudad</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- MÉTODOS DE PAGO -->
+      <section class="form-section">
+        <h3>
+          <i class="fa-solid fa-credit-card"></i>
+          Método de pago
+        </h3>
+
+        <div id="paymentMethods" class="payment-methods">
+          <!-- Renderizado dinámicamente por checkout.js -->
+        </div>
+      </section>
+
+      <!-- SUBIR COMPROBANTE -->
+      <section class="form-section">
+        <h3>
+          <i class="fa-solid fa-file-arrow-up"></i>
+          Comprobante de pago
+        </h3>
+
+        <p class="section-note">
+          <i class="fa-solid fa-info-circle"></i>
+          Sube una captura de pantalla o foto del comprobante de transferencia
+        </p>
+
+        <div class="receipt-upload">
+          <div
+            id="receiptDropZone"
+            class="drop-zone">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p>Arrastra tu comprobante aquí</p>
+            <p class="drop-zone-text">o haz clic para seleccionar</p>
+            <p class="file-requirements">JPG, PNG o PDF · Máx 5MB</p>
+          </div>
+
+          <div
+            id="receiptPreview"
+            class="receipt-preview"
+            style="display: none;">
+            <!-- Renderizado dinámicamente por checkout.js -->
+          </div>
+
+          <input
+            type="file"
+            id="receiptFile"
+            accept="image/jpeg,image/jpg,image/png,application/pdf"
+            style="display: none;">
+        </div>
+      </section>
+
+      <!-- BOTÓN SUBMIT -->
+      <button type="submit" class="btn-submit">
+        <i class="fa-solid fa-check-circle"></i>
+        Confirmar pedido
+      </button>
+    </form>
+  </div>
+
+  <!-- RESUMEN DEL PEDIDO -->
+  <aside class="order-summary-sidebar">
+    <div class="order-summary-sticky">
+      <div id="orderSummary">
+        <!-- Renderizado dinámicamente por checkout.js -->
+      </div>
+    </div>
+  </aside>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <p>© <span id="currentYear"></span> GoldenPolis — Todos los derechos reservados</p>
+</footer>
+<script>document.getElementById("currentYear").textContent = new Date().getFullYear();</script>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/checkout.js"></script>
+
+<script>
+(function(){
+  var h=document.getElementById('navHamburger'),m=document.getElementById('navMobile'),o=document.getElementById('navOverlay');
+  if(!h)return;
+  function open(){h.classList.add('is-open');m.classList.add('is-open');o.classList.add('is-open');document.body.style.overflow='hidden';}
+  function close(){h.classList.remove('is-open');m.classList.remove('is-open');o.classList.remove('is-open');document.body.style.overflow='';}
+  h.addEventListener('click',function(){h.classList.contains('is-open')?close():open();});
+  o.addEventListener('click',close);
+  m.querySelectorAll('a').forEach(function(l){l.addEventListener('click',close);});
+  window.addEventListener('scroll',function(){document.querySelector('.header').classList.toggle('scrolled',window.scrollY>10);},{passive:true});
+})();
+</script>
+
+</body>
+</html>
