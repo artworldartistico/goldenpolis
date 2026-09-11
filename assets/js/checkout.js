@@ -784,7 +784,6 @@ function showSuccessPage(order) {
   });
 
   let downloadsHTML = "";
-  git 
   if (digitalProducts.length > 0) {
     downloadsHTML = `
       <div class="downloads-box">
