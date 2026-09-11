@@ -552,8 +552,4 @@ function applyCategoryFromURL() {
   }
 
   applyFilters();
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> bba433d242441240c30aa323855f28c4c387dc58
