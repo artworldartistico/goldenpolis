@@ -104,7 +104,7 @@ const demoProducts = [
         - Animales como ovejas, camellos, perros, caballos, entre otros en plástico
         - base
       `,
-    images: ["./assets/img/pesebres/pesebre-artesanal-colonial.jpeg", "./assets/img/pesebres/pesebre-artesanal-arabe.jpeg"],
+    images: ["https://artworldartistico.github.io/goldenpolis/assets/img/pesebres/pesebre-artesanal-colonial.jpeg", "https://artworldartistico.github.io/goldenpolis/assets/img/pesebres/pesebre-artesanal-arabe.jpeg"],
     rating: 4
   }
 ];
