@@ -91,7 +91,7 @@ const demoProducts = [
   {
     id: 3,
     name: "Pesebre artesanal",
-    price: 100000,
+    price: 85000,
     type: "physical",
     stock: 10,
     category: ["Temporada de Navidad"],
@@ -105,6 +105,27 @@ const demoProducts = [
         - base
       `,
     images: ["https://artworldartistico.github.io/goldenpolis/assets/img/pesebres/pesebre-artesanal-colonial.jpeg", "https://artworldartistico.github.io/goldenpolis/assets/img/pesebres/pesebre-artesanal-arabe.jpeg"],
+    rating: 4
+  },
+  {
+    id: 4,
+    name: "Pesebre en Porcelanicrón",
+    price: 35000,
+    type: "physical",
+    stock: 10,
+    category: ["Temporada de Navidad"],
+    description: `
+        Pesebre artesanal 100% hecho a mano, incluye:
+        - María
+        - José
+        - Niño Dios
+        - Mula
+        - Buey
+        - Tres reyes magos
+        
+        Tamaño: Aproximadamente 5 cm
+      `,
+    images: ["https://artworldartistico.github.io/goldenpolis/assets/img/pesebres/pesebre-en-porcelanicron.jpg"],
     rating: 4
   }
 ];
@@ -129,7 +150,7 @@ const demoUsers = [
 
 // PAISES Y CIUDADES
 const locations = {
-  Colombia: ["Bogotá", "Medellín", "Cali", "Villavicencio", "Bucaramanga", "Cartagena", "Fusagasugá", "Envigado", "Manizales", "Pereira", "Envigado", "Santa Marta", "Valle de Buga", "Valle de Aburrá", "Valledupar", "Sabaneta", "Itagui", "Soacha", "Salamina", "Puerto López", "Rionegro", "Acacías", "Tocancipá", "Duitama", "Tabio", "Tenjo", "Ciudad Jardín", "Santa Fé de Antioquia", "Siberia", "Chía", "Cajicá", "Aguachica", "Aguazul", "Puerto Gaitán", "Granada", "Cúcuta", "Chocontá", "Chinacota"],
+  Colombia: ["Bogotá", "Medellín", "Cali", "Villavicencio", "Bucaramanga", "Cartagena", "Fusagasugá", "Envigado", "Manizales", "Pereira", "Envigado", "Santa Marta", "Valle de Buga", "Valle de Aburrá", "Valledupar", "Sabaneta", "Itagui", "Soacha", "Salamina", "Puerto López", "Rionegro", "Acacías", "Tocancipá", "Duitama", "Tabio", "Tenjo", "Ciudad Jardín", "Santa Fé de Antioquia", "Siberia", "Chía", "Cajicá", "Aguachica", "Aguazul", "Puerto Gaitán", "Granada", "Cúcuta", "Chocontá", "Chinacota", "Robledo", "Silvania", "Chinauta"],
   México: ["CDMX", "Guadalajara", "Monterrey", "Tijuana", "Puerto Vallarta", "Cancun", "Puebla-Tlaxcala", "León", "Mérida", "Querétaro", "Chihuahua"],
   España: ["Madrid", "Barcelona", "Andalucía", "Sevilla", "Zaragoza", "Málaga", "Bilbao", "Palma", "Murcia", "Valencia"],
   Argentina: ["Buenos Aires", "Córdoba", "Rosario", "Mendoza", "La Plata", "San Miguel de Tucumán", "Mar del Plata", "Salta", "Santa Fé"],
